@@ -1,0 +1,17 @@
+FROM ubuntu:latest
+
+RUN apt-get update && apt-get install -y \
+    g++ \
+    libpthread-stubs0-dev \
+    make \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+
+COPY . .
+
+RUN mkdir /var/log/erss
+
+EXPOSE 12345
+
+RUN chmod +x /app/run.sh
